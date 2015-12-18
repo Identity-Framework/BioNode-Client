@@ -18,6 +18,7 @@ var PRIVATE_KEY = fs.readFileSync(KEY_PATH);
 var CERT = fs.readFileSync(CERT_PATH);
 
 var credentials = {
+    requestCert: true,
     key: PRIVATE_KEY,
     cert: CERT
 };
@@ -28,8 +29,10 @@ var app = express();
 // Do the app routing here
 app.get('/', function (req, res) {
     console.log('GET request /');
+    var cert = req.connection.getPeerCertificate();
+    console.log(cert);
     res.send('GET request /');
-});
+})
 
 app.get(ROOT_PATH, function (req, res) {
     console.log('GET request /ldresources');
