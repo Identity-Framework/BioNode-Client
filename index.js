@@ -51,12 +51,13 @@ app.get('/', function (req, res) {
         if (err) {
             // handle the error
             console.log('Error processing certificate: ' + err.message);
-            res.send()
+            res.send('Error processing certificate:\n' + err.message);
         }
         console.log('Webid verification result: ' + result);
         // Store the verification result in the session
         req.session.user_webid = result;
-        res.send('WebID verified');
+        req.session.verified = true;
+        res.next();
     });
 });
 
