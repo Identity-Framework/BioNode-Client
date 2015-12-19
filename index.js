@@ -32,7 +32,7 @@ var app = express();
 
 // Use the session middleware
 app.use(session({
-    secret: 'keyboard cat',
+    secret: 'linkeddata',
     cookie: { maxAge: 60000 },
     resave: false,
     saveUninitialize: false
@@ -44,24 +44,21 @@ app.get('/', function (req, res) {
 
     if (!cert) {
         res.send('No cert provided!');
-    }
+    };
 
     // validate the WebID CERT
     webid.verify(cert, function (err, result) {
         if (err) {
             // handle the error
-            console.log('Error processing certificat: ' + err.message);
+            console.log('Error processing certificate: ' + err.message);
             res.send()
         }
-        // Store some stuff in the session
         console.log('Webid verification result: ' + result);
         // Store the verification result in the session
         req.session.user_webid = result;
         res.send('WebID verified');
     });
-
-    console.log(cert);
-})
+});
 
 app.get(ROOT_PATH, function (req, res) {
     console.log('GET request /ldresources');
