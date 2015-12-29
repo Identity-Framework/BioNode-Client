@@ -1,0 +1,178 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix kaosActor: <http://ontology.ihmc.us/Actor.owl#> .
+@prefix kaosAction: <http://ontology.ihmc.us/Action.owl#>.
+@prefix kaosGroup: <http://ontology.ihmc.us/Group.owl#>.
+@prefix kaosEntity: <http://ontology.ihmc.us/Entity.owl#>.
+@prefix kaosPolicy: <http://ontology.ihmc.us/Policy.owl#>.
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
+@prefix ont: <http://www.w3.org/2006/gen/ont#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dc: <http://purl.org/dc/elements/1.1/>.
+@prefix : <http://esterline.ncat.edu/biometrics/policies#>.
+
+<http://esterline.ncat.edu/biometrics/policies> a owl:Ontology;
+	owl:imports <http://ontology.ihmc.us/Action.owl>,
+		<http://ontology.ihmc.us/Entity.owl>,
+		<http://ontology.ihmc.us/Group.owl>,
+		<http://ontology.ihmc.us/Policy.owl>,
+		<http://xmlns.com/foaf/0.1/>.
+
+:Organization a owl:Class;
+	rdfs:subClassOf 
+		[ a owl:Class;
+			owl:unionOf(foaf:Group kaosGroup:Group)].
+	
+:BiometricCrendential a owl:Class.
+
+:RequestedFE a owl:Class.
+:DisposableFE a owl:Class.
+
+:uses a owl:ObjectProperty;
+	rdfs:domain :BiometricCredential;
+	rdfs:range :DisposableFE.
+
+:requestedFEID a owl:DatatypeProperty;
+	rdfs:domain :RequestedFE;
+	rdfs:range xsd:integer.
+
+:similarityBetweenFEs a owl:DatatypeProperty;
+	rdfs:range xsd:float;
+	rdfs:domain :DisposableFE.
+
+:ServerRequestedFEPolicyAction a owl:Class;
+	rdfs:subClassOf 
+		[ a owl:Restriction;
+		owl:onProperty :similarityBetweenFEs;
+		owl:allValuesFrom 
+			[ a rdfs:Datatype;
+			owl:onDatatype xsd:float;
+			owl:withRestrictions ([ xsd:minExclusive "1.00"^^xsd:float]
+                [ xsd:maxExclusive "0.50"^^xsd:float])]].
+
+:SoftwareAgent a owl:Class;
+	rdfs:subClassOf 
+		[ a owl:Class;
+			owl:unionOf (kaosActor:ArtificalAgent 
+			kaosEntity:ComputingEntity
+			foaf:Agent)].
+
+:User a owl:Class;
+	rdfs:subClassOf 
+		[ a owl:Class;
+			owl:unionOf(kaosActor:Human foaf:Person)].
+
+:Access a owl:Class;
+	rdfs:subClassOf kaosAction:Action.
+
+:Append a owl:Class;
+	rdfs:subClassOf :Read, :Write;
+	rdfs:subClassOf kaosAction:AccessAction.
+
+:Read a owl:Class;
+	rdfs:subClassOf kaosAction:AccessAction.
+
+:Write a owl:Class;
+	rdfs:subClassOf kaosAction:AccessAction.
+
+:Delete a owl:Class;
+	rdfs:subClassOf kaosAction:AccessAction.
+
+:Administrator a owl:Class;
+	rdfs:subClassOf :Role,
+		[ a owl:Class;
+			owl:intersectionOf
+			([ a owl:Restriction;
+				owl:onProperty :mode;
+				owl:allValuesFrom 
+					[ a owl:Class;
+					owl:intersectionOf (:Append :Read :Write :Delete)]]
+			[ a owl:Class;
+				owl:unionOf (
+				[ a owl:Restriction;
+					owl:onProperty :accessTo;
+					owl:someValuesFrom :Resource]
+					
+					[ a owl:Restriction;
+						owl:onProperty :creator;
+						owl:someValuesFrom :Resource]
+					)
+			]
+			)].
+:Role a owl:Class;
+	rdfs:subClassOf kaosGroup:PersonGroup.
+	
+:mode a owl:ObjectProperty;
+	rdfs:domain kaosActor:Actor;
+	rdfs:range kaosAction:AccessAction.
+	
+:owner a owl:ObjectProperty;
+	rdfs:domain :Resource;
+	rdfs:range :User.
+	
+:accessTo a owl:ObjectProperty;
+	rdfs:domain kaosActor:Actor;
+	rdfs:range :Resource;
+	owl:inverseOf :hasAccess.
+
+:hasAccess a owl:ObjectProperty.	
+
+:accessToCard a owl:ObjectProperty;
+	rdfs:domain kaosActor:Actor;
+	rdfs:range owl:Class.
+	
+:hasAccessToCard a owl:ObjectProperty;
+	owl:inverseOf :accessToCard.
+	
+:Resource a owl:Class;
+	owl:equivalentClass
+		[ a owl:Class;
+		owl:unionOf (ont:InformationResource dcterms:DCMIType)].
+
+:creator a owl:ObjectProperty.
+	
+dc:creator rdfs:subPropertyOf :creator.
+foaf:maker rdfs:subPropertyOf :creator.
+	
+:hasCreator a owl:ObjectProperty;
+	owl:inverseOf :creator.
+	
+:isMemberOf a owl:ObjectProperty;
+	rdfs:subPropertyOf foaf:member, kaosGroup:hasMember;
+	rdfs:range :Organization;
+	rdfs:domain 
+		[ a owl:Class;
+			owl:unionOf (:User :SoftwareAgent)].
+			
+:hasMember a owl:ObjectProperty;
+	owl:inverseOf :isMemberOf.
+	
+:AccessPolicyAction a owl:Class;
+	rdfs:subClassOf 
+	[ a owl:Class;
+		owl:unionOf (
+			[ a owl:Restriction;
+			owl:onProperty :hasAccess;
+			owl:allValuesFrom kaosActor:Actor] 
+			
+			[ a owl:Restriction;
+			owl:onProperty :owner;
+			owl:allValuesFrom kaosActor:Actor])],
+	kaosAction:Action.
+		
+:accessPolicy a kaosPolicy:AuthorizationPolicy;
+	 kaosPolicy:hasAction :AccessPolicyAction;
+	 kaosPolicy:hasPriority "1"^^xsd:nonNegativeInteger.
+	
+:AccessCardPolicyAction a owl:Class;
+	rdfs:subClassOf
+		[ a owl:Restriction;
+		owl:onProperty :accessToCard;
+		owl:allValuesFrom rdfs:Resource].
+		
+:accessCardPolicy a kaosPolicy:AuthorizationPolicy;
+	 kaosPolicy:hasAction :AccessCardPolicyAction;
+	 kaosPolicy:hasPriority "1"^^xsd:nonNegativeInteger.
+	 

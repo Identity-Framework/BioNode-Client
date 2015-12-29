@@ -11,6 +11,7 @@ var https = require('https');
 var webid = require('webid/tls');
 var biometric = require('./lib/biometric');
 var validate = require('./lib/validate');
+var reasoner_serv = require('./gen_node');
 
 // These need to be relative
 var KEY_PATH = 'keys/key.pem';
@@ -42,48 +43,36 @@ app.use(session({
 
 // Do the app routing here
 app.get('/', function (req, res, next) {
-    res.send('<a href="/validate">Validate WebID</a>')
-});
-
-app.get('/validate', function (req, res, next) {
     var cert = req.connection.getPeerCertificate();
-
-    if (!cert) {
-        res.send('No cert provided!');
-    };
+    var sess = req.session;
+    sess.authed = false;
 
     // validate the WebID CERT
     webid.verify(cert, function (err, result) {
         if (err) {
             // handle the error
             console.log('Error processing certificate: ' + err.message);
-            res.send('Error processing certificate:\n' + err.message);
+            // Security flaw.. Should redirect to access denied page.
+            throw err;
         }
         console.log('Webid verification result: ' + result);
         // Store the verification result in the session
         req.session.user_webid = result;
-        req.session.verified = true;
-        res.send('WebID successfully validated');
+        req.session.authed = true;
+        res.redirect('/authorized');
     });
 });
 
-app.get(ROOT_PATH, function (req, res) {
-    console.log('GET request /ldresources');
-    res.send('GET request /ldresources');
+app.get('/authorized', function (req, res, next) {
+
 });
 
-// Create a regular HTTP server
-// var http_server = http.createServer(app)
-//     .listen(HTTP_PORT, function (req, res) {
-//     });
+app.get('/resources/admin.txt', function (req, res) {
+
+});
 
 // Set the app to listen on port 3000
 // The express app acts as middleware for the native https server
 // HTTPS!
 var https_server = https.createServer(credentials, app)
     .listen(HTTPS_PORT, function (req, res) {});
-
-// var https_server2 = https.createServer({
-//     key: PRIVATE_KEY,
-//     cert: CERT
-// }, app).listen(3000, function (req, res) {});
