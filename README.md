@@ -12,3 +12,9 @@ Webid access control with biometric data client.
 
 #### Contributing
 [link to wiki page on contributing standards]()
+
+#### Dependency install troubleshooting
+If you get errors related to make failing the build like below:
+```
+
+```
