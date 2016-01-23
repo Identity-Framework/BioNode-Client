@@ -1,0 +1,35 @@
+{
+  "name": "bionode",
+  "version": "0.0.1",
+  "description": "WebID access control with biometrics included",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Identity-Framework/BioNode.git"
+  },
+  "keywords": [
+    "nodejs",
+    "linkeddata",
+    "biometrics"
+  ],
+  "author": "Cory Sabol",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Identity-Framework/BioNode/issues"
+  },
+  "dependencies": {
+    "acl": "^0.4.7",
+    "chai": "^3.4.1",
+    "express": "^4.13.3",
+    "express-session": "^1.12.1",
+    "mime": "^1.3.4",
+    "n3": "^0.4.3",
+    "rdflib": "^0.2.9",
+    "thrift": "^0.9.3",
+    "webid": "^0.3.1"
+  },
+  "homepage": "https://github.com/Identity-Framework/BioNode#readme"
+}
