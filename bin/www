@@ -7,25 +7,42 @@
 var app = require('../app');
 var debug = require('debug')('BioNode:server');
 var http = require('http');
+var https = require('https');
+var fs = require('fs');
+var path = require('path');
 
 /**
  * Get port from environment and store in Express.
  */
 
+var PRIVATE_KEY = fs.readFileSync(path.resolve(__dirname, '../local/keys/key.pem'));
+var CERT = fs.readFileSync(path.resolve(__dirname, '../local/keys/cert.pem'));
+
+var opts = {
+		requestCert: true,
+		rejectUnauthorized: false,
+		key: PRIVATE_KEY,
+		cert: CERT
+};
+
 var port = normalizePort(process.env.PORT || '3000');
+var tls_port = port + 1;
 app.set('port', port);
+app.set('tls_port', tls_port);
 
 /**
- * Create HTTP server.
+ * Create HTTP & HTTPS server.
  */
 
 var server = http.createServer(app);
+var https_server = https.createServer(opts, app);
 
 /**
  * Listen on provided port, on all network interfaces.
  */
 
 server.listen(port);
+https_server.listen(tls_port, function (req, res) {});
 server.on('error', onError);
 server.on('listening', onListening);
 

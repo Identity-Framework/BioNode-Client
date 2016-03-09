@@ -1,4 +1,6 @@
 var express = require('express');
+var session = require('express-session');
+var fs = require('fs');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
@@ -7,6 +9,21 @@ var bodyParser = require('body-parser');
 
 var routes = require('./app_server/routes/index');
 var users = require('./app_server/routes/users');
+
+var KEY_PATH = 'local/keys/key.pem';
+var CERT_PATH = 'local/keys/cert.pem';
+var ROOT_PATH = 'local/ldresources/';
+var HTTPS_PORT = 5000;
+
+var PRIVATE_KEY = fs.readFileSync(KEY_PATH);
+var CERT = fs.readFileSync(CERT_PATH);
+
+var credentials = {
+		requestCert: true,
+		rejectUnauthorized: false,
+		key: PRIVATE_KEY,
+		cert: CERT
+};
 
 var app = express();
 
@@ -24,6 +41,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/users', users);
+
+app.use(session({
+		secret: 'bionode',
+		cookie: { maxAge: 60000 },
+		resave: false,
+		saveUninitialize: false
+}));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
