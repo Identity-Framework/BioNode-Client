@@ -25,7 +25,7 @@ var opts = {
 		cert: CERT
 };
 
-var port = normalizePort(process.env.PORT || '3000');
+var port = 3000;
 var tls_port = port + 1;
 app.set('port', port);
 app.set('tls_port', tls_port);

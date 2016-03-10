@@ -1,0 +1,25 @@
+# Get the ubuntu base image
+FROM debian
+
+# Author
+MAINTAINER Cory Sabol
+
+RUN apt-get update
+
+# Install deps
+# RUN apt-get install -y nodejs
+RUN apt-get install -y git
+
+# Mount the BioNode source folder
+# This should reflect whatever branch the repo is on currently
+VOLUME ["../../"]
+
+# Install the application deps just in case
+RUN cat package.json
+RUN npm install
+
+EXPOSE 3000
+EXPOSE 3001
+
+# Start the app
+CMD npm start
