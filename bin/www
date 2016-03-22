@@ -25,24 +25,25 @@ var opts = {
 		cert: CERT
 };
 
-var port = 3000;
-var tls_port = port + 1;
-app.set('port', port);
+//var port = 3000;
+var tls_port = 3001;
+//app.set('port', port);
 app.set('tls_port', tls_port);
 
 /**
  * Create HTTP & HTTPS server.
  */
 
-var server = http.createServer(app);
-var https_server = https.createServer(opts, app);
+//var server = http.createServer(app);
+var server = https.createServer(opts, app);
 
 /**
  * Listen on provided port, on all network interfaces.
  */
 
-server.listen(port);
-https_server.listen(tls_port, function (req, res) {});
+//server.listen(port);
+server.listen(tls_port, function (req, res) {});
+
 server.on('error', onError);
 server.on('listening', onListening);
 
