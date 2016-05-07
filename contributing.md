@@ -19,24 +19,14 @@ Now decide if you want your feature or bug fix to go into the master branch
 or the stable branch.  As a rule of thumb, bug fixes go into the stable branch
 while new features go into the master branch.
 
-The stable branch is effectively frozen; patches that change the node.js
-API/ABI or affect the run-time behavior of applications get rejected.
+The stable branch is effectively frozen; patches that change the BioNode 
+run-time behavior get rejected.
 
-The rules for the master branch are less strict; consult the
-[stability index page][] for details.
-
-In a nutshell, modules are at varying levels of API stability.  Bug fixes are
-always welcome but API or behavioral  changes to modules at stability level 3
-and up are off-limits.
-
-BioNode has several bundled dependencies in the deps/ and the tools/
-directories that are not part of the project proper.  Any changes to files
+BioNode has several bundled dependencies that are not part of the project proper.  Any changes to files
 in those directories or its subdirectories should be sent to their respective
 projects.  Do not send your patch to us, we cannot accept it.
 
-In case of doubt, open an issue in the [issue tracker][], post your question
-to the [node.js mailing list][] or contact one of the [project maintainers][]
-on [IRC][].
+In case of doubt, open an issue in the [issue tracker][] or contact one of the [project maintainers][].
 
 Especially do so if you plan to work on something big.  Nothing is more
 frustrating than seeing your hard work go to waste because your vision
@@ -49,10 +39,10 @@ Okay, so you have decided on the proper branch.  Create a feature branch
 and start hacking:
 
 ```sh
-$ git checkout -b my-feature-branch -t origin/v0.10
+$ git checkout -b my-feature-branch -t origin/v0.01
 ```
 
-(Where v0.10 is the latest stable branch as of this writing.)
+(Where v0.01 is the latest stable branch as of this writing.)
 
 
 ### COMMIT
@@ -101,7 +91,7 @@ Use `git rebase` (not `git merge`) to sync your work from time to time.
 
 ```sh
 $ git fetch upstream
-$ git rebase upstream/v0.10  # or upstream/master
+$ git rebase upstream/v0.01  # or upstream/master
 ```
 
 
