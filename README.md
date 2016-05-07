@@ -2,7 +2,7 @@
 
 Webid access control with biometric data client.
 
-[link to wiki here]()
+## [Read the wiki!](https://github.com/Identity-Framework/BioNode/wiki)
 
 #### How to run
 1. clone the repo `git clone https://url/to/repo/`.
@@ -11,7 +11,7 @@ Webid access control with biometric data client.
 5. run the application with `npm start`.
 
 #### Contributing
-[link to wiki page on contributing standards]()
+[How to contribute.](https://github.com/Identity-Framework/BioNode/blob/master/contributing.md)
 
 #### Dependency install troubleshooting
 If you get errors related to make failing the build like below:
