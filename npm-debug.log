@@ -7,7 +7,7 @@
 6 silly lifecycle BioNode@0.0.2~prestart: no script for prestart, continuing
 7 info lifecycle BioNode@0.0.2~start: BioNode@0.0.2
 8 verbose lifecycle BioNode@0.0.2~start: unsafe-perm in lifecycle true
-9 verbose lifecycle BioNode@0.0.2~start: PATH: /usr/local/lib/node_modules/npm/bin/node-gyp-bin:/home/zeroxff/Workspace/IdentityFramework/BioNode/node_modules/.bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/jvm/java-8-oracle/bin:/usr/lib/jvm/java-8-oracle/db/bin:/usr/lib/jvm/java-8-oracle/jre/bin:/usr/lib/jvm/java-8-oracle/bin:/usr/lib/jvm/java-8-oracle/db/bin:/usr/lib/jvm/java-8-oracle/jre/bin
+9 verbose lifecycle BioNode@0.0.2~start: PATH: /usr/local/lib/node_modules/npm/bin/node-gyp-bin:/home/zeroxff/Workspace/IdentityFramework/BioNode/node_modules/.bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/jvm/java-8-oracle/bin:/usr/lib/jvm/java-8-oracle/db/bin:/usr/lib/jvm/java-8-oracle/jre/bin
 10 verbose lifecycle BioNode@0.0.2~start: CWD: /home/zeroxff/Workspace/IdentityFramework/BioNode
 11 silly lifecycle BioNode@0.0.2~start: Args: [ '-c', 'node ./bin/www' ]
 12 silly lifecycle BioNode@0.0.2~start: Returned: code: 1  signal: null
@@ -24,7 +24,7 @@
 14 verbose stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:211:5)
 15 verbose pkgid BioNode@0.0.2
 16 verbose cwd /home/zeroxff/Workspace/IdentityFramework/BioNode
-17 error Linux 4.2.0-23-generic
+17 error Linux 4.2.0-35-generic
 18 error argv "/usr/local/bin/node" "/usr/local/bin/npm" "start"
 19 error node v5.0.0
 20 error npm  v3.3.6

@@ -1,9 +1,9 @@
 var express = require('express');
+var session = require('express-session');
 var router = express.Router();
+var webid = require('webid/tls');
+var ctrl_main = require('../controllers/main');
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'BioNode' });
-});
+router.get('/', ctrl_main.index);
 
 module.exports = router;
