@@ -7,7 +7,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var routes = require('./app_server/routes/index');
+var routes = require('./app_server/routes/');
 var users = require('./app_server/routes/users');
 
 var KEY_PATH = 'local/keys/key.pem';
