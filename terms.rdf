@@ -114,3 +114,28 @@
 :BehavioralFeatureVector a rdfs:Class;
 	rdfs:subClassOf :FeatureVector.
 
+:Pressure a rdf Property; 
+	rdfs:domain :BehavioralFeatureVector;
+	rdfs:range xsd: integer.
+
+:Velocity a rdf Property; 
+	rdfs:domain :BehavioralFeatureVector;
+	rdfs:range xsd: integer.
+	
+:touchGestures a rdf Property;
+	rdfs:domain :BehavioralFeatureVector
+	rdfs:range  xsd: integer.
+	
+:numOfTouchMovements rdfs: subPropertyOf;
+	rdfs:domain :touchGestures;
+	rdfs:range :touchGestures.
+
+:averageTouchMovements rdfs: subPropertyOf;
+	rdfs:domain :touchGestures;
+	rdfs:range :touchGestures.
+	
+:fracationTouchMovements rdfs:subPropertyOf;
+	rdfs:domain :touchGestures;
+	rdfs: range :touchGestures.
+	
+
