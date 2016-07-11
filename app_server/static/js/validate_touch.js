@@ -31,4 +31,8 @@ window.stop ();
 
 }
 
+<<<<<<< HEAD
 module.exports.validate = validate.
+=======
+module.exports.validate = validate.
+>>>>>>> origin/validate-touch-data
