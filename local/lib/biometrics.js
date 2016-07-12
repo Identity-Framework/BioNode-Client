@@ -8,7 +8,7 @@ function BiometricsUtility(thresh){
 			throw(new Error("This cannot be performed"));
 		}
 		for(let i in ar1){
-			norm+=Math.abs(ar1[i]-ar2[i]);
+			norm+=Math.abs(ar2[i]-ar1[i]);
 			max+=Math.max(ar1[i], ar2[i]);
 		}
 		return norm/max;
