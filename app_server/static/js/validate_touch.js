@@ -15,22 +15,32 @@ follows {mouse: true, touch: false}
 
 @ author Alaysia Murphy- almurphy@baypath.edu
 */
-var validate;
+var key = true; 
+
+var touch = false; //[Active authentication standard];
+
+
+var validate = setInterval(dataCollected, 10000); //validate every 10 seconds
 
 function dataCollected(x) {
-	var validate = setInterval(dataCollected, 10000); //validate every 10 seconds
 	
-	close("")//close window
+  if (touch == true ) {
+	  alert(1); //Do set of actions
+  } else if (touch == false) {
+	  alert(2); // Do another set of actions
+	} 
+	
+	if (key == true) {
+	  alert(3); // Do set of actions specified in first if
+	
+  } else if (key == false) {
+	  alert(4); // Do second set of actions
+  }
+
+    if (window.prompt("stop"))
+		 clearInterval(validate);
 }
 	
-
-	function dataCollectStop() {
-		clearInterval (dataCollect);
-	}	
-window.stop ();
-
-}
-
 <<<<<<< HEAD
 module.exports.validate = validate.
 =======
