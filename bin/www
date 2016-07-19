@@ -11,10 +11,6 @@ var https = require('https');
 var fs = require('fs');
 var path = require('path');
 
-/**
- * Get port from environment and store in Express.
- */
-
 var PRIVATE_KEY = fs.readFileSync(path.resolve(__dirname, '../local/keys/key.pem'));
 var CERT = fs.readFileSync(path.resolve(__dirname, '../local/keys/cert.pem'));
 
@@ -42,7 +38,9 @@ var server = https.createServer(opts, app);
  */
 
 //server.listen(port);
-server.listen(tls_port, function (req, res) {});
+server.listen(tls_port, function (req, res) {
+	console.log("HTTPS server started. \nListening on PORT: " + tls_port);
+});
 
 server.on('error', onError);
 server.on('listening', onListening);

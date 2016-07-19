@@ -13,17 +13,17 @@ var users = require('./app_server/routes/users');
 var KEY_PATH = 'local/keys/key.pem';
 var CERT_PATH = 'local/keys/cert.pem';
 var ROOT_PATH = 'local/ldresources/';
-var HTTPS_PORT = 5000;
+//var HTTPS_PORT = 5000;
 
 var PRIVATE_KEY = fs.readFileSync(KEY_PATH);
 var CERT = fs.readFileSync(CERT_PATH);
 
-var credentials = {
+/*var credentials = {
     requestCert: true,
     rejectUnauthorized: false,
     key: PRIVATE_KEY,
     cert: CERT
-};
+};*/
 
 var app = express();
 
