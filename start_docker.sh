@@ -1,7 +1,9 @@
+#!/bin/bash
 
 # Check to see if the script is being ran as root
 # This can be avoided in the future if the user is a member in the docker group
-if ["$EUID" -ne 0]; then 
+# Perhaps add an OR to the statement which checks if the user is a memeber of the group
+if [ "$EUID" -ne 0 ]; then 
     echo "Please run as root."
     exit
 fi
