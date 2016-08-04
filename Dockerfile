@@ -7,6 +7,9 @@ MAINTAINER Cory Sabol
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
+# Install gulp for streaming builds
+RUN npm install gulp -g
+
 # Install app deps
 COPY package.json /usr/src/app
 RUN npm install

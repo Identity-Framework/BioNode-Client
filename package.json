@@ -20,5 +20,8 @@
     "serve-favicon": "~2.3.0",
     "thrift": "^0.9.3",
     "solid-client": "0.20.0"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1"
   }
 }
