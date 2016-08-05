@@ -22,6 +22,8 @@
     "solid-client": "0.20.0"
   },
   "devDependencies": {
-    "gulp": "^3.9.1"
+    "gulp": "^3.9.1",
+    "gulp-livereload": "^3.8.1",
+    "gulp-nodemon": "^2.1.0"
   }
 }

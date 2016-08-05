@@ -41,7 +41,7 @@ var verify_agent = function(req, callback) {
 
         if (callback != null) {
             // execute the callback
-            callback();
+            callback(result);
         }
     });
 };

@@ -8,4 +8,5 @@ gulp.task('develop', function () {
       nodemon({script: './bin/www', ext: 'js hjs json', legacyWatch: true });
 });
 
-gulp.task('default', 'develop');
+gulp.task('default', ['develop']);
+

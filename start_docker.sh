@@ -11,4 +11,6 @@ fi
 # Build the container and launch the app.
 # Should check to see if the container is already built or running.
 docker build -t bionode .
-docker run -it -p 3001:3001 --rm --name bionode-running bionode
+# docker run -v /host/directory:/container/directory -other -options image_name command_to_run
+# docker run -it -v /./:/usr/src/app -p 3001:3001 --rm --name bionode-running bionode
+docker run  -it -p 3001:3001 --rm --name bionode-running bionode

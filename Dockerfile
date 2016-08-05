@@ -14,11 +14,17 @@ RUN npm install gulp -g
 COPY package.json /usr/src/app
 RUN npm install
 
+# COPY gulpfile.js /usr/src/app
+# RUN gulp --gulpfile gulpfile.js
+
 # Bundle app source
 COPY . /usr/src/app
 
 EXPOSE 3001
+# Gulp rebuild port
+EXPOSE 35729
 
 # Start the app
 CMD ["npm", "start"]
+# CMD ["gulp", "--gulpfile", "gulpfile.js"]
 

@@ -1,9 +1,10 @@
-var express = require('express');
-var session = require('express-session');
-var router = express.Router();
-var webid = require('webid/tls');
-var ctrl_main = require('../controllers/main');
+use 'strict'
 
-router.get('/', ctrl_main.index);
+var express = require('express')
+//var session = require('express-session');
+var router = express.Router()
+var ctrl_index = require('../controllers/index')
 
-module.exports = router;
+router.get('/', ctrl_index.index)
+
+module.exports = router
