@@ -14,6 +14,7 @@ Webid access control with biometric data client.
 [How to contribute.](https://github.com/Identity-Framework/BioNode/blob/master/contributing.md)
 
 #### Dependency install troubleshooting
+#### OUTDATED ===========================
 If you get errors related to make failing the build like below:
 ```bash
 gyp ERR! build error 

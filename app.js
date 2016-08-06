@@ -39,6 +39,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Need to generate a high-entropy secret
 app.use(session({
     secret: 'bionode',
     cookie: { maxAge: 60000 },

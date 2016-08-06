@@ -21,8 +21,6 @@ RUN npm install
 COPY . /usr/src/app
 
 EXPOSE 3001
-# Gulp rebuild port
-EXPOSE 35729
 
 # Start the app
 CMD ["npm", "start"]
