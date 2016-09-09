@@ -5,6 +5,7 @@
  */
 
 var app = require('../app');
+var entry_app = require('../entry_app');
 var debug = require('debug')('BioNode:server');
 var http = require('http');
 var https = require('https');
@@ -15,31 +16,45 @@ var PRIVATE_KEY = fs.readFileSync(path.resolve(__dirname, '../local/keys/key.pem
 var CERT = fs.readFileSync(path.resolve(__dirname, '../local/keys/cert.pem'));
 
 var opts = {
-		requestCert: true,
-		rejectUnauthorized: false,
-		key: PRIVATE_KEY,
-		cert: CERT
+  requestCert: true,
+  rejectUnauthorized: false,
+  key: PRIVATE_KEY,
+  cert: CERT
 };
 
-//var port = 3000;
+var entry_opts = {
+  requestCert: false,
+  rejectUnauthorized: false,
+  key: PRIVATE_KEY,
+  cert: CERT
+};
+
+var entry_port = 3000;
 var tls_port = 3001;
-//app.set('port', port);
+entry_app.set('port', entry_port);
 app.set('tls_port', tls_port);
 
 /**
- * Create HTTP & HTTPS server.
+ * Create HTTPS servers.
  */
 
-//var server = http.createServer(app);
+var entry_server = https.createServer(opts, entry_app);
 var server = https.createServer(opts, app);
 
 /**
  * Listen on provided port, on all network interfaces.
  */
 
+entry_server.listen(entry_port, function (req, res) {
+  console.log("HTTPS Entry point server started. \nListening on PORT: " + entry_port);
+});
+
+entry_server.on('error', onError);
+entry_server.on('listening', onListening);
+
 //server.listen(port);
 server.listen(tls_port, function (req, res) {
-	console.log("HTTPS server started. \nListening on PORT: " + tls_port);
+  console.log("HTTPS server started. \nListening on PORT: " + tls_port);
 });
 
 server.on('error', onError);

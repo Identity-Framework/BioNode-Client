@@ -7,22 +7,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var routes = require('./app_server/routes/');
-
-var KEY_PATH = 'local/keys/key.pem';
-var CERT_PATH = 'local/keys/cert.pem';
-var ROOT_PATH = 'local/ldresources/';
-//var HTTPS_PORT = 5000;
-
-var PRIVATE_KEY = fs.readFileSync(KEY_PATH);
-var CERT = fs.readFileSync(CERT_PATH);
-
-/*var credentials = {
-    requestCert: true,
-    rejectUnauthorized: false,
-    key: PRIVATE_KEY,
-    cert: CERT
-};*/
+var routes = require('./app_server/routes/entry/');
 
 var app = express();
 
