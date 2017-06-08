@@ -8,7 +8,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var routes = require('./app_server/routes/');
-var users = require('./app_server/routes/users');
+//var users = require('./app_server/routes/users/');
 
 var KEY_PATH = 'local/keys/key.pem';
 var CERT_PATH = 'local/keys/cert.pem';
@@ -48,7 +48,6 @@ app.use(session({
 }));
 
 app.use('/', routes);
-app.use('/users', users);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
