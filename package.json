@@ -18,7 +18,8 @@
     "n3": "^0.4.5",
     "serve-favicon": "~2.3.0",
     "thrift": "^0.9.3",
-    "webid": "Identity-Framework/node-webid"
+    "webid": "Identity-Framework/node-webid",
+    "node-forge": "^0.7.1"
   },
   "devDependencies": {
     "gulp": "^3.9.1",

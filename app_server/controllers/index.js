@@ -8,6 +8,7 @@ module.exports.index = function (req, res) {
     // TLS and clientside certs...
     // A way around this would be to have a separate service on another port which can requset and 
     // validate the web id.
+    
     validate.verify_agent(req, function (result) {
         if (result) {
             res.render('index', {title: 'BioNode'})
