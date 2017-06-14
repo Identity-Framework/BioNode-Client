@@ -13,8 +13,8 @@ function GET(req, res, next) {
 
 function POST(req, res, next) {
     var options = {
-        spkac: req.body.spkac,
-        agent: "https://esterline.ncat.edu/corysabol"
+        spkac: req.body.spkac.replace(/\r\n/g,''),
+        agent: "https://esterline.ncat.edu/" + req.body.name
     }
     webid.generate(options, function(err, cert) {
         console.log(cert)

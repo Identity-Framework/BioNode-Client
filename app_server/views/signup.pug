@@ -10,10 +10,7 @@ block content
         form(method='POST' action='/signup')
           div.form-group
             label(for='name') Name:
-            input#name.form-control(type='text', placeholder='first and last' name='name')
-          div.form-group
-            label(for='email') Email:
-            input#email.form-control(type='email', placeholder='name@email.com' name='email')
+            input#name.form-control(type='text', placeholder='first and last' name='name', required)
           div.form-group
             keygen(name='spkac', challenge='')           
           button.btn.btn-primary(type='submit') Sign up
